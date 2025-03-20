@@ -1,0 +1,31 @@
+body {
+    background-color: LightBlue;
+    color: rgb(1, 63, 90);
+    font-family: Arial;
+    margin: 0px;
+}
+
+main {
+    background-color: rgb(224, 194, 227);
+    color: rgb(104, 1, 116);
+    font-family: Arial;
+    margin: 0px;
+}
+
+footer {
+    background-color: rgb(202, 242, 216);
+    color: rgb(0, 93, 0);
+    font-family: Arial;
+    margin: 0px;
+}
+
+header {
+    background-color: rgb(228, 165, 209);
+    color: rgb(47, 6, 91);
+    font-family: Arial;
+    margin: 0px;
+}
+/* а - код, чтобы убрать нижние подчеркивания у ссылок */
+a { 
+    text-decoration: none;
+}
