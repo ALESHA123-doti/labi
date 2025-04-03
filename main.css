@@ -25,6 +25,13 @@ header {
     font-family: Arial;
     margin: 0px;
 }
+
+a {
+    color: rgb(128, 0, 66);
+    text-decoration: none;
+    transition: 1s 2s;
+}
+
 /* Непосещённая ссылка */
 a:link {
     color: rgb(128, 0, 66);
@@ -42,6 +49,7 @@ a:hover {
     color: rgb(255, 0, 208);
     text-decoration: underline;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    transition: 0.3s;
 }
 
 /* Активная ссылка (в момент нажатия) */
