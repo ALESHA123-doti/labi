@@ -1,0 +1,5 @@
+﻿  ConsoleApplication1.cpp
+C:\Users\hihik\ALESHKINA\labi\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(218,30): warning C4838: Преобразование из "double" в "GLfloat" требует сужающего преобразования.
+C:\Users\hihik\ALESHKINA\labi\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(218,41): warning C4838: Преобразование из "double" в "GLfloat" требует сужающего преобразования.
+C:\Users\hihik\ALESHKINA\labi\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(218,52): warning C4838: Преобразование из "double" в "GLfloat" требует сужающего преобразования.
+  ConsoleApplication1.vcxproj -> C:\Users\hihik\ALESHKINA\labi\ConsoleApplication1\Debug\ConsoleApplication1.exe
