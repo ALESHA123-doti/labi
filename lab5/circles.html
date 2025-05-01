@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Алёшкина Варвара Максимовна. Лабораторная 5</title>
+        <link rel="stylesheet" href="..//main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon-32x32.png">
+        <link rel="icon" href="favicon-48x48.ico">
+        <style>
+            /* Стили для кругов */
+            .circle {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                font-size: 24px;
+                border: 3px solid #000;
+                position: absolute;
+                transition: background-color 0.5s;
+                cursor: pointer;
+            }
+            
+            /* Стиль кнопки восстановления */
+            .reset-btn {
+                padding: 10px 20px;
+                background-color: #5c1036;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                margin: 20px auto;
+                display: block;
+                font-size: 16px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header> 
+            НГТУ, ФБ, Лабораторная работа 5
+            <hr>
+        </header>
+
+        <main>
+            <!-- Кнопка восстановления -->
+            <button class="reset-btn" id="resetCircles">Восстановить круги</button>
+            
+            <!-- Круги в разных местах страницы -->
+            <div class="circle" style="background:#FF5733; top:20%; left:10%;">1</div>
+            <div class="circle" style="background:#33FF57; top:30%; left:80%;">2</div>
+            <div class="circle" style="background:#3357FF; top:20%; left:50%;">3</div>
+            <div class="circle" style="background:#F033FF; top:70%; left:20%;">4</div>
+            <div class="circle" style="background:#FF33A8; top:40%; left:40%;">5</div>
+            <div class="circle" style="background:#33FFF5; top:60%; left:70%;">6</div>
+            <div class="circle" style="background:#FF8C33; top:80%; left:30%;">7</div>
+            <div class="circle" style="background:#8C33FF; top:20%; left:70%;">8</div>
+            <div class="circle" style="background:#33FF8C; top:50%; left:10%;">9</div>
+            <div class="circle" style="background:#FF3361; top:90%; left:60%;">10</div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy;Алёшкина Варя, ФБИ-34, 5 курс, 2025
+        </footer>
+
+        <script>
+            // Сохраняем исходные цвета кругов
+            const originalColors = [
+                '#FF5733', '#33FF57', '#3357FF', '#F033FF',
+                '#FF33A8', '#33FFF5', '#FF8C33', '#8C33FF',
+                '#33FF8C', '#FF3361'
+            ];
+            
+            // Делаем круги прозрачными при клике
+            document.querySelectorAll('.circle').forEach((circle, index) => {
+                circle.addEventListener('click', function() {
+                    this.style.backgroundColor = 'transparent';
+                });
+            });
+            
+            // Восстанавливаем круги
+            document.getElementById('resetCircles').addEventListener('click', function() {
+                document.querySelectorAll('.circle').forEach((circle, index) => {
+                    circle.style.backgroundColor = originalColors[index];
+                });
+            });
+        </script>
+    </body>
+</html>
