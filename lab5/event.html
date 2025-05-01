@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Алёшкина Варвара Максимовна. Лабораторная 5</title>
+        <link rel="stylesheet" href="..//main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon-32x32.png">
+        <link rel="icon" href="favicon-48x48.ico">
+        <style>
+            #block {
+                width: 300px;
+                height: 200px;
+                border: 2px solid #333;
+                background-color: #f0f0f0;
+                cursor: crosshair;
+                margin: 20px auto;
+                padding: 10px;
+                font-family: Arial, sans-serif;
+                transition: all 0.3s ease;
+            }
+            .key-message {
+                font-weight: bold;
+                margin-top: 5px;
+            }
+            .ctrl-message { color: red; }
+            .alt-message { color: blue; }
+            .shift-message { color: green; }
+        </style>
+        <script>
+            function showCoords() {
+                let x = this.event.x;
+                let y = this.event.y;
+                let div = document.getElementById('block');
+                let messages = [];
+                
+                // Сбрасываем стили
+                div.style.color = 'black';
+                div.style.backgroundColor = '#f0f0f0';
+                div.style.borderColor = '#333';
+                div.style.borderStyle = 'solid';
+                
+                // Проверяем нажатые клавиши
+                if(this.event.ctrlKey) {
+                    messages.push('<div class="key-message ctrl-message">Нажата клавиша Ctrl</div>');
+                    div.style.backgroundColor = '#ffdddd';
+                    div.style.borderColor = 'red';
+                }
+                if(this.event.altKey) {
+                    messages.push('<div class="key-message alt-message">Нажата клавиша Alt</div>');
+                    div.style.backgroundColor = '#ddddff';
+                    div.style.borderStyle = 'dashed';
+                }
+                if(this.event.shiftKey) {
+                    messages.push('<div class="key-message shift-message">Нажата клавиша Shift</div>');
+                    div.style.backgroundColor = '#ddffdd';
+                    div.style.borderWidth = '4px';
+                }
+                
+                // Выводим координаты и сообщения
+                div.innerHTML = '<b>x</b> = ' + x + 'px<br><b>y</b> = ' + y + 'px' + messages.join('');
+            }
+        </script>
+    </head>
+
+    <body>
+        <header> 
+            НГТУ, ФБ, Лабораторная работа 5
+            <hr>
+        </header>
+
+        <main>
+            <div id="block" onmousemove="showCoords()"></div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy;Алёшкина Варя, ФБИ-34, 5 курс, 2025
+        </footer>
+    </body>
+</html>
