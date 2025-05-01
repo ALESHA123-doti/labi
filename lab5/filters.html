@@ -7,17 +7,11 @@
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon-32x32.png">
         <link rel="icon" href="favicon-48x48.ico">
-        <style>
-            main {
-                justify-content: center;
-            }
-        
-        </style>
         <script>
-            function hueRotateChange() {
-                const value = document.getElementById('hueValue').value;
-                document.getElementById('hueOutput').innerText = value + '°';
-                document.getElementById('hueImage').style.filter = `hue-rotate(${value}deg)`;
+            function invertChange() {
+                const value = document.getElementById('invertValue').value;
+                document.getElementById('invertOutput').innerText = value + '%';
+                document.getElementById('invertImage').style.filter = `invert(${value}%)`;
             }
         </script>
     </head>
@@ -30,13 +24,13 @@
 
         <main>
             <div>
-                Фильтр hue-rotate:
-                <input type="range" id="hueValue" min="0" max="360" value="0" 
-                       oninput="hueRotateChange()">
-                <span id="hueOutput">0°</span>
+                Фильтр invert:
+                <input type="range" id="invertValue" min="0" max="100" value="0" 
+                       oninput="invertChange()">
+                <span id="invertOutput">0%</span>
             </div>
             
-            <img src="i.webp" id="hueImage">
+            <img src="i.webp" id="invertImage">
         </main>
 
         <footer>
