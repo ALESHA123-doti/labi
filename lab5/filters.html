@@ -8,22 +8,23 @@
         <link rel="icon" href="favicon-32x32.png">
         <link rel="icon" href="favicon-48x48.ico">
         <style>
-            #brightnessControl {
+            /* Дополнительные стили для лучшего отображения */
+            #contrastControl {
                 width: 300px;
                 margin: 20px 0;
             }
-            #brightnessOutput {
+            #contrastOutput {
                 display: inline-block;
                 width: 50px;
                 text-align: right;
             }
-            
+
         </style>
         <script>
-            function brightnessChange() {
-                let value = document.getElementById('brightnessValue').value;
-                document.getElementById("brightnessOutput").innerText = value + '%';
-                document.getElementById('blurImage').style.filter = 'brightness(' + value + '%)';
+            function contrastChange() {
+                let value = document.getElementById('contrastValue').value;
+                document.getElementById("contrastOutput").innerText = value + '%';
+                document.getElementById('contrastImage').style.filter = 'contrast(' + value + '%)';
             }
         </script>
     </head>
@@ -35,15 +36,15 @@
         </header>
 
         <main>
-            <div>
-                Фильтр brightness:
-                <input type="range" id="brightnessValue" min="0" max="500" value="100" 
-                       oninput="brightnessChange()" class="brightness-control">
-                <span id="brightnessOutput">100%</span>
+            <div class="control-container">
+                <label for="contrastValue">Фильтр contrast:</label>
+                <input type="range" id="contrastValue" min="0" max="500" value="100" 
+                       oninput="contrastChange()" class="contrast-control">
+                <span id="contrastOutput">100%</span>
             </div>
             
             <div style="display: flex; justify-content: center; align-items: center; padding: 20px;">
-                <img src="i.webp" id="blurImage" style="filter: brightness(100%)">
+                <img src="i.webp" id="contrastImage" style="filter: contrast(100%)">
             </div>
         </main>
 
