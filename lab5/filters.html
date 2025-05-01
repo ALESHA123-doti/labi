@@ -1,41 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Алёшкина Варвара Максимовна. Лабораторная 5</title>
+<head>
+    <meta charset="utf-8">
+    <title>Алёшкина Варвара Максимовна. Лабораторная 5</title>
         <link rel="stylesheet" href="..//main.css">
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon-32x32.png">
         <link rel="icon" href="favicon-48x48.ico">
-        <script>
-            function invertChange() {
-                const value = document.getElementById('invertValue').value;
-                document.getElementById('invertOutput').innerText = value + '%';
-                document.getElementById('invertImage').style.filter = `invert(${value}%)`;
-            }
-        </script>
-    </head>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 5
+        <hr>
+    </header>
 
-    <body>
-        <header> 
-            НГТУ, ФБ, Лабораторная работа 5
-            <hr>
-        </header>
+    <main>
+        <div class="controls">
+            Насыщенность:
+            <input type="range" id="saturate" min="0" max="500" value="100" oninput="updateFilter()">
+            <span id="saturateValue" class="value">100%</span>
+        </div>
+        
+        <img src="i.webp" id="image">
+    </main>
 
-        <main>
-            <div>
-                Фильтр invert:
-                <input type="range" id="invertValue" min="0" max="100" value="0" 
-                       oninput="invertChange()">
-                <span id="invertOutput">0%</span>
-            </div>
-            
-            <img src="i.webp" id="invertImage">
-        </main>
+    <footer>
+        <hr>
+        &copy;Алёшкина Варя, ФБИ-34, 5 курс, 2025
+    </footer>
 
-        <footer>
-            <hr>
-            &copy;Алёшкина Варя, ФБИ-34, 5 курс, 2025
-        </footer>
-    </body>
+    <script>
+        function updateFilter() {
+            const value = document.getElementById('saturate').value;
+            document.getElementById('saturateValue').textContent = value + '%';
+            document.getElementById('image').style.filter = `saturate(${value}%)`;
+        }
+    </script>
+</body>
 </html>
