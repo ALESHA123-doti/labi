@@ -7,12 +7,17 @@
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon-32x32.png">
         <link rel="icon" href="favicon-48x48.ico">
+        <style>
+            main {
+                justify-content: center;
+            }
+        
+        </style>
         <script>
-            function grayscaleChange() {
-                let value = document.getElementById('grayscaleValue').value;
-                document.getElementById("grayscaleOutput").innerText = value + '%';
-                document.getElementById('grayscaleImage').style.filter = 'grayscale(' + value + '%)';
-                
+            function hueRotateChange() {
+                const value = document.getElementById('hueValue').value;
+                document.getElementById('hueOutput').innerText = value + '°';
+                document.getElementById('hueImage').style.filter = `hue-rotate(${value}deg)`;
             }
         </script>
     </head>
@@ -24,18 +29,14 @@
         </header>
 
         <main>
-            <div class="control-container">
-                <div>
-                    <label for="grayscaleValue">Фильтр grayscale:</label>
-                    <span id="grayscaleOutput">0%</span>
-                </div>
-                <input type="range" id="grayscaleValue" min="0" max="100" value="0" 
-                       oninput="grayscaleChange()" class="grayscale-control">
+            <div>
+                Фильтр hue-rotate:
+                <input type="range" id="hueValue" min="0" max="360" value="0" 
+                       oninput="hueRotateChange()">
+                <span id="hueOutput">0°</span>
             </div>
             
-            <div class="image-container">
-                <img src="i.webp" id="grayscaleImage">
-            </div>
+            <img src="i.webp" id="hueImage">
         </main>
 
         <footer>
