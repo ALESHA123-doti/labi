@@ -15,7 +15,7 @@
                 let a = parseInt(inputA.value);
                 let b = parseInt(inputB.value);
                 let result = a + b;
-                alert('Сумма ' + a + ' и ' + b + ' равна ' + result); // вывод значения
+                alert('Сумма ' + a + ' и ' + b + ' равна ' + result);
             }
 
             function showDifference() {
@@ -45,7 +45,6 @@
                 let a = parseInt(inputA.value);
                 let b = parseInt(inputB.value);
 
-                // Сброс стилей перед проверкой
                 inputB.style.color = '';
                 inputB.style.borderColor = '';
 
@@ -79,7 +78,6 @@
                 let a = parseInt(inputA.value);
                 let b = parseInt(inputB.value);
 
-                // Сброс стилей перед проверкой
                 inputA.style.color = '';
                 inputA.style.borderColor = '';
                 inputB.style.color = '';
@@ -124,6 +122,17 @@
                 let author = 'привеетик !! ^-^';
                 alert(author);
             }
+
+            function changeOutput(buttonNum, backColor, textColor, borderStyle, borderRadius, borderWidth, borderColor) {
+                let output = document.getElementById('output');
+                output.innerHTML = 'Нажата кнопка ' + buttonNum;
+                output.style.backgroundColor = backColor;
+                output.style.color = textColor;
+                output.style.borderStyle = borderStyle;
+                output.style.borderRadius = borderRadius;
+                output.style.borderWidth = borderWidth;
+                output.style.borderColor = borderColor;
+            }
         </script>
         <style>
             .message {
@@ -136,8 +145,17 @@
                 border-radius: 8px;
                 padding: 8px;
                 box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-                text-align: center; /* Центрирование текста по горизонтали */
-                line-height: 50px; /* Центрирование текста по вертикали */
+                text-align: center;
+                line-height: 50px;
+            }
+
+            #output {
+                border: 1px solid;
+                width: 300px;
+                height: 40px;
+                margin-top: 10px;
+                padding: 5px;
+                box-sizing: border-box;
             }
         </style>
     </head>
@@ -158,6 +176,16 @@
             <div class="message" onclick="showDiv()">==Найти отношение чисел==</div>
             <div class="message" onclick="showPower()">==Найти возведение в степень==</div>
             <div class="message" onclick="showAuthor()">==Узнать, кто автор страницы==</div>
+
+            <div>
+                <input type='button' value='Кнопка 1' onclick="changeOutput(1, 'red', 'yellow', 'dashed', '10px', '3px', 'green')">
+                <input type='button' value='Кнопка 2' onclick="changeOutput(2, 'black', 'lime', 'double', '15px 0', '4px', 'purple')">
+                <input type='button' value='Кнопка 3' onclick="changeOutput(3, 'blue', 'lightblue', 'groove', '50%', '5px', 'orange')">
+                <input type='button' value='Кнопка 4' onclick="changeOutput(4, 'white', 'darkviolet', 'ridge', '20px 5px', '2px', 'brown')">
+            </div>
+            
+            <div id="output"></div>
+            
         </main>
 
         <footer ondblclick="showPrivet()">
