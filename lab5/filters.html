@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>Алёшкина Варвара Максимовна. Лабораторная 5</title>
-        <link rel="stylesheet" href="..//main.css">
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="icon" href="favicon-32x32.png">
-        <link rel="icon" href="favicon-48x48.ico">
+    <link rel="stylesheet" href="..//main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-32x32.png">
+    <link rel="icon" href="favicon-48x48.ico">
 </head>
 <body>
     <header>
@@ -16,9 +16,9 @@
 
     <main>
         <div class="controls">
-            Насыщенность:
-            <input type="range" id="saturate" min="0" max="500" value="100" oninput="updateFilter()">
-            <span id="saturateValue" class="value">100%</span>
+            <label for="sepia">Эффект сепии:</label>
+            <input type="range" id="sepia" min="0" max="100" value="0" oninput="updateSepia()">
+            <span id="sepiaValue" class="value">0%</span>
         </div>
         
         <img src="i.webp" id="image">
@@ -30,10 +30,11 @@
     </footer>
 
     <script>
-        function updateFilter() {
-            const value = document.getElementById('saturate').value;
-            document.getElementById('saturateValue').textContent = value + '%';
-            document.getElementById('image').style.filter = `saturate(${value}%)`;
+        function updateSepia() {
+            const value = document.getElementById('sepia').value;
+            document.getElementById('sepiaValue').textContent = value + '%';
+            document.getElementById('image').style.filter = `sepia(${value}%)`;
+            
         }
     </script>
 </body>
