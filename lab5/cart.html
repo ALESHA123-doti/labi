@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Алёшкина Варвара Максимовна. Лабораторная 5</title>
+        <link rel="stylesheet" href="..//main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon-32x32.png">
+        <link rel="icon" href="favicon-48x48.ico">
+        <style>
+            /* Стили только для корзины */
+            .cart-container {
+                border: 2px solid #581034;
+                border-radius: 8px;
+                padding: 15px;
+                margin: 20px 0;
+                max-width: 500px;
+            }
+            .cart-title {
+                color: #7b194a;
+                text-align: center;
+                margin-top: 0;
+            }
+            .cart-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+                padding: 8px;
+                border-bottom: 1px dashed #8e1d55;
+            }
+            .item-name {
+                font-weight: bold;
+                color: #64153d;
+            }
+            .item-price {
+                color: #65163b;
+            }
+            .cart-input {
+                width: 200px;
+                padding: 3px;
+                border: 1px solid #5c1036;
+                border-radius: 4px;
+                text-align: center;
+            }
+            .cart-input::placeholder {
+                color: #a87b96;
+                font-size: 0.8em;
+            }
+            .calculate-btn {
+                display: block;
+                width: 100%;
+                padding: 8px;
+                background-color: #5c1036;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                margin-top: 15px;
+            }
+            .clear-btn {
+                display: block;
+                width: 100%;
+                padding: 8px;
+                background-color: #5b0f2e;
+                color: #ffffff;
+                border: 1px solid #5c1036;
+                border-radius: 4px;
+                cursor: pointer;
+                margin-top: 15px;
+            }
+            .total-price {
+                font-weight: bold;
+                color: #60143a;
+                text-align: center;
+                margin-top: 15px;
+                padding: 8px;
+                border: 1px solid #500e2f;
+                border-radius: 4px;
+            }
+            .buttons-container {
+                display: flex;
+                gap: 10px;
+            }
+            .buttons-container button {
+                flex: 1;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header> 
+            НГТУ, ФБ, Лабораторная работа 5
+            <hr>
+        </header>
+
+        <main>
+            <!-- Корзина товаров -->
+            <div class="cart-container">
+                <h3 class="cart-title">Корзина товаров</h3>
+                
+                <div class="cart-item">
+                    <div>
+                        <span class="item-name">Яблоки</span>
+                        <span class="item-price">(100р/шт)</span>
+                    </div>
+                    <input type="number" min="0" class="cart-input" id="apples" placeholder="сколько яблок?">
+                </div>
+                
+                <div class="cart-item">
+                    <div>
+                        <span class="item-name">Груши</span>
+                        <span class="item-price">(80р/шт)</span>
+                    </div>
+                    <input type="number" min="0" class="cart-input" id="pears" placeholder="введите количество">
+                </div>
+                
+                <div class="cart-item">
+                    <div>
+                        <span class="item-name">Апельсины</span>
+                        <span class="item-price">(150р/шт)</span>
+                    </div>
+                    <input type="number" min="0" class="cart-input" id="oranges" placeholder="сколько апельсинов?">
+                </div>
+                
+                <div class="cart-item">
+                    <div>
+                        <span class="item-name">Дыни</span>
+                        <span class="item-price">(300р/шт)</span>
+                    </div>
+                    <input type="number" min="0" class="cart-input" id="melons" placeholder="количество дынь">
+                </div>
+                
+                <div class="cart-item">
+                    <div>
+                        <span class="item-name">Бананы</span>
+                        <span class="item-price">(60р/шт)</span>
+                    </div>
+                    <input type="number" min="0" class="cart-input" id="bananas" placeholder="сколько бананов?">
+                </div>
+                
+                <div class="buttons-container">
+                    <button class="calculate-btn" onclick="calculateTotal()">Рассчитать</button>
+                    <button class="clear-btn" onclick="clearCart()">Очистить</button>
+                </div>
+                
+                <div class="total-price" id="total">Общая цена: 0 р</div>
+            </div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy;Алёшкина Варя, ФБИ-34, 5 курс, 2025
+        </footer>
+
+        <script>
+            function calculateTotal() {
+                // Получаем количество каждого товара
+                const apples = parseInt(document.getElementById('apples').value) || 0;
+                const pears = parseInt(document.getElementById('pears').value) || 0;
+                const oranges = parseInt(document.getElementById('oranges').value) || 0;
+                const melons = parseInt(document.getElementById('melons').value) || 0;
+                const bananas = parseInt(document.getElementById('bananas').value) || 0;
+                
+                // Цены товаров
+                const prices = {
+                    apples: 100,
+                    pears: 80,
+                    oranges: 150,
+                    melons: 300,
+                    bananas: 60
+                };
+                
+                // Рассчитываем общую сумму
+                const total = apples * prices.apples + 
+                             pears * prices.pears + 
+                             oranges * prices.oranges + 
+                             melons * prices.melons + 
+                             bananas * prices.bananas;
+                
+                // Выводим результат
+                document.getElementById('total').textContent = `Общая цена: ${total} р`;
+            }
+            
+            function clearCart() {
+                // Очищаем все поля ввода
+                document.getElementById('apples').value = '';
+                document.getElementById('pears').value = '';
+                document.getElementById('oranges').value = '';
+                document.getElementById('melons').value = '';
+                document.getElementById('bananas').value = '';
+                
+                // Сбрасываем общую стоимость
+                document.getElementById('total').textContent = 'Общая цена: 0 р';
+            }
+            
+            // Рассчитываем сумму при загрузке страницы
+            window.onload = calculateTotal;
+        </script>
+    </body>
+</html>
