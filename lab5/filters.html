@@ -7,24 +7,12 @@
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon-32x32.png">
         <link rel="icon" href="favicon-48x48.ico">
-        <style>
-            /* Дополнительные стили для лучшего отображения */
-            #contrastControl {
-                width: 300px;
-                margin: 20px 0;
-            }
-            #contrastOutput {
-                display: inline-block;
-                width: 50px;
-                text-align: right;
-            }
-
-        </style>
         <script>
-            function contrastChange() {
-                let value = document.getElementById('contrastValue').value;
-                document.getElementById("contrastOutput").innerText = value + '%';
-                document.getElementById('contrastImage').style.filter = 'contrast(' + value + '%)';
+            function grayscaleChange() {
+                let value = document.getElementById('grayscaleValue').value;
+                document.getElementById("grayscaleOutput").innerText = value + '%';
+                document.getElementById('grayscaleImage').style.filter = 'grayscale(' + value + '%)';
+                
             }
         </script>
     </head>
@@ -37,14 +25,16 @@
 
         <main>
             <div class="control-container">
-                <label for="contrastValue">Фильтр contrast:</label>
-                <input type="range" id="contrastValue" min="0" max="500" value="100" 
-                       oninput="contrastChange()" class="contrast-control">
-                <span id="contrastOutput">100%</span>
+                <div>
+                    <label for="grayscaleValue">Фильтр grayscale:</label>
+                    <span id="grayscaleOutput">0%</span>
+                </div>
+                <input type="range" id="grayscaleValue" min="0" max="100" value="0" 
+                       oninput="grayscaleChange()" class="grayscale-control">
             </div>
             
-            <div style="display: flex; justify-content: center; align-items: center; padding: 20px;">
-                <img src="i.webp" id="contrastImage" style="filter: contrast(100%)">
+            <div class="image-container">
+                <img src="i.webp" id="grayscaleImage">
             </div>
         </main>
 
