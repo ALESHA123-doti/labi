@@ -7,18 +7,27 @@
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon-32x32.png">
         <link rel="icon" href="favicon-48x48.ico">
+        <script>
+            function showMultipleTable() {
+                let tbl = document.getElementById('mtable');
+                tbl.innerHTML = '<h1>Таблица умножения</h1>';
+                for (i = 1; i <= 10; i++) {
+                    let s = `<div>${i} * 7 =${i*7} </div>`;
+                    tbl.innerHTML += s;
+                }
+            }
+            showMultipleTable();
+        </script>  
     </head>
 
-    <body>
+    <body onload="showMultipleTable()">
         <header> 
             НГТУ, ФБ, Лабораторная работа 6
             <hr>
         </header>
 
         <main>
-            <ol>
-                <li><a href="mtable.html">Таблица умножения</a></li>
-            </ol>
+            <div id="mtable"></div>
         </main>
 
         <footer>
