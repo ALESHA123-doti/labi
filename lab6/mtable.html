@@ -17,9 +17,8 @@
                 color: #57024f;
                 white-space: nowrap;
                 width: 100%;
-                margin-left: -50px; 
+                margin-left: -50px;
             }
-
             #mtable div {
                 border: 1px solid #034a42;
                 padding: 10px;
@@ -27,21 +26,64 @@
                 background-color: #ffe3fa;
                 text-align: center;
             }
+            .input-container {
+                margin: 20px auto;
+                width: 300px;
+                text-align: center;
+            }
+            .input-container input {
+                margin: 5px;
+                padding: 5px;
+                width: 100px;
+            }
+            .input-container button {
+                margin: 5px;
+                padding: 5px 10px;
+            }
+            .error {
+                color: red;
+                margin-top: 10px;
+            }
+            .error-input {
+                border: 1px solid red;
+            }
         </style>
         <script>
-            function showMultipleTable() {
+            function showMultipleTable(multiplier, start, end) {
                 let tbl = document.getElementById('mtable');
                 tbl.innerHTML = '<h1>Таблица умножения</h1>';
-                for (i = 1; i <= 10; i++) {
-                    let s = `<div>${i} * 7 = ${i*7}</div>`;
+
+                for (i = start; i <= end; i++) {
+                    let s = `<div>${i} * ${multiplier} = ${i * multiplier}</div>`;
                     tbl.innerHTML += s;
                 }
             }
-            showMultipleTable();
+
+            function updateTable() {
+                let multiplier = parseInt(document.getElementById('multiplier').value) || 7;
+                let start = parseInt(document.getElementById('start').value) || 1;
+                let end = parseInt(document.getElementById('end').value) || 10;
+                let errorElement = document.getElementById('error');
+
+                if (start > end) {
+                    errorElement.textContent = 'Ошибка: "Начать с" не может быть больше, чем "Закончить на"';
+                    document.getElementById('start').classList.add('error-input');
+                    document.getElementById('end').classList.add('error-input');
+                } else {
+                    errorElement.textContent = '';
+                    document.getElementById('start').classList.remove('error-input');
+                    document.getElementById('end').classList.remove('error-input');
+                    showMultipleTable(multiplier, start, end);
+                }
+            }
+
+            window.onload = function() {
+                showMultipleTable(7, 1, 10);
+            };
         </script>
     </head>
 
-    <body onload="showMultipleTable()">
+    <body>
         <header>
             НГТУ, ФБ, Лабораторная работа 6
             <hr>
@@ -49,6 +91,13 @@
 
         <main>
             <div id="mtable"></div>
+            <div class="input-container">
+                <input type="number" id="start" placeholder="Начать с">
+                <input type="number" id="multiplier" placeholder="Умножить на">
+                <input type="number" id="end" placeholder="Закончить на">
+                <button onclick="updateTable()">Таблица</button>
+                <div id="error" class="error"></div>
+            </div>
         </main>
 
         <footer>
