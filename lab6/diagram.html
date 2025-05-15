@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Алёшкина Варвара Максимовна. Лабораторная 6</title>
+        <link rel="stylesheet" href="..//main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon-32x32.png">
+        <link rel="icon" href="favicon-48x48.ico">
+        <style>
+            #diag {
+                display: flex;
+                flex-direction: row;
+                height: 400px;
+                background-color: #ffffff;
+                border: 1px solid #de65b4;
+                align-items: flex-end;
+                padding: 10px;
+                gap: 10px;
+            }
+            .bar {
+                width: 50px;
+                background-color: #e585bc;
+                margin: 0 0 5px 0;
+                position: relative;
+                width: 100%;
+            }
+            .bar-label {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                text-align: center;
+                font-size: 12px;
+                color: rgb(0, 0, 0);
+                font-weight: bold;
+            }
+        </style>
+        <script>
+            function showDiagram() {
+                let data = [38, 86, 55, 28, 92, 60, 41, 17, 9, 43];
+                let colors = ['pink', 'blue', 'red', 'yellow', 'purple', 'orange', 'green', 'silver', 'brown', 'gold'];
+                let bars = document.getElementsByClassName('bar');
+                const diagHeight = document.getElementById('diag').clientHeight;
+                const maxData = Math.max(...data);
+                const k = diagHeight / maxData * 0.9;
+
+                for(let i = 0; i < data.length; i++) {
+                    bars[i].style.height = k * data[i] + 'px';
+                    bars[i].style.backgroundColor = colors[i];
+                    bars[i].innerHTML = `<div class="bar-label">${data[i]}</div>`;
+                }
+            }
+        </script>
+    </head>
+    <body onload="showDiagram()">
+        <header>
+            НГТУ, ФБ, Лабораторная работа 6
+            <hr>
+        </header>
+
+        <main>
+            <div id="diag">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy;Алёшкина Варя, ФБИ-34, 2 курс, 2025
+        </footer>
+    </body>
+</html>
