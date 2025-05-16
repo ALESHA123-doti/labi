@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Алёшкина Варвара Максимовна. Лабораторная 6</title>
+        <link rel="stylesheet" href="..//main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon-32x32.png">
+        <link rel="icon" href="favicon-48x48.ico">
+        <style>
+            .date-container {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                max-width: 600px;
+                margin: 20px auto;
+                padding: 20px;
+                background-color: #f8f9fa;
+                border-radius: 10px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            .date-item {
+                margin: 12px 0;
+                padding: 12px;
+                background-color: white;
+                border-left: 4px solid #c73fb3;
+                border-radius: 4px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .locale-name {
+                font-weight: bold;
+                color: #2c3e50;
+                min-width: 180px;
+            }
+            .date-value {
+                color: #7f8c8d;
+                font-family: 'Courier New', monospace;
+            }
+            h2 {
+                color: #2c3e50;
+                text-align: center;
+                margin-bottom: 20px;
+                border-bottom: 2px solid #eee;
+                padding-bottom: 10px;
+            }
+        </style>
+        <script>
+            function showDate() {
+                let out = document.getElementById('current-date');
+                let today = new Date();
+                
+                const locales = [
+                    { code: 'ru-RU', name: 'Русский (Россия)' },
+                    { code: 'en-US', name: 'Английский (США)' },
+                    { code: 'de-DE', name: 'Немецкий (Германия)' },
+                    { code: 'ja-JP', name: 'Японский (Япония)' },
+                    { code: 'ar-EG', name: 'Арабский (Египет)' },
+                    { code: 'fr-FR', name: 'Французский (Франция)' }
+                ];
+                
+                let html = '<h2>Текущая дата и время в разных локалях</h2>';
+                
+                locales.forEach(locale => {
+                    html += `
+                    <div class="date-item">
+                        <span class="locale-name">${locale.name}</span>
+                        <span class="date-value">${today.toLocaleString(locale.code)}</span>
+                    </div>
+                    `;
+                });
+                
+                out.innerHTML = html;
+            }
+        </script>
+    </head>
+    <body onload="showDate()">
+        <header> 
+            НГТУ, ФБ, Лабораторная работа 6
+            <hr>
+        </header>
+
+        <main>
+            <div id="current-date" class="date-container"></div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy;Алёшкина Варя, ФБИ-34, 2 курс, 2025
+        </footer>
+    </body>
+</html>
