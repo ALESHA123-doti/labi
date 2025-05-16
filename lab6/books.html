@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Алёшкина Варвара Максимовна. Лабораторная 6</title>
+        <link rel="stylesheet" href="..//main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon-32x32.png">
+        <link rel="icon" href="favicon-48x48.ico">
+        <script src="books.js"></script>
+        <style>
+            #bookList {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                padding: 20px;
+            }
+            .book {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                background-color: #f9f9f9;
+            }
+            .book.bestseller {
+                background-color: #ffeb3b;
+                border: 2px solid #ffd700;
+            }
+            .book.unavailable {
+                background-color: #e0e0e0;
+                color: #a0a0a0;
+            }
+            .book.unavailable:after {
+                content: " (Нет в наличии)";
+            }
+        </style>
+        <script>
+            function showBooks() {
+                const bookList = document.getElementById('bookList');
+                bookList.innerHTML = ''; // Очистка списка перед добавлением
+
+                for(let i = 0; i < books.length; i++) {
+                    const book = books[i];
+                    let bookClass = 'book';
+                    if (book.bestseller) bookClass += ' bestseller';
+                    if (!book.available) bookClass += ' unavailable';
+
+                    bookList.innerHTML += `
+                        <div class="${bookClass}">
+                            <b>${book.author}</b>.<i>${book.name}</i>
+                            &mdash; ${book.publicationYear} (${book.price} руб.)
+                        </div>
+                    `;
+                }
+            }
+        </script>
+    </head>
+
+    <body onload="showBooks()">
+        <header>
+            НГТУ, ФБ, Лабораторная работа 6
+            <hr>
+        </header>
+
+        <main>
+            <h1>Список книг</h1>
+            <div id="bookList">
+            </div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy;Алёшкина Варя, ФБИ-34, 2 курс, 2025
+        </footer>
+    </body>
+</html>
