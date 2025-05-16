@@ -43,8 +43,43 @@
                 border-bottom: 2px solid #eee;
                 padding-bottom: 10px;
             }
+            
+            /* Стили для плавного изменения цвета */
+            header {
+                transition: color 0.5s ease;
+            }
+            
+            /* Стили для кнопок */
+            .buttons-container {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin: 20px 0;
+            }
+            
+            button {
+                padding: 8px 16px;
+                border: none;
+                border-radius: 4px;
+                background-color: #4a6fa5;
+                color: white;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            
+            button:hover {
+                background-color: #3a5a80;
+            }
+            
+            button:disabled {
+                background-color: #cccccc;
+                cursor: not-allowed;
+            }
         </style>
         <script>
+            let colorInterval;
+            let timeUpdateInterval;
+            
             function showDate() {
                 let out = document.getElementById('current-date');
                 let today = new Date();
@@ -71,6 +106,38 @@
                 
                 out.innerHTML = html;
             }
+            
+            function changeColors() {
+                const header = document.getElementsByTagName('header')[0];
+                const rgb = `rgb(${Math.floor(Math.random()*256)}, ${Math.floor(Math.random()*256)}, ${Math.floor(Math.random()*256)})`;
+                header.style.color = rgb;
+            }
+
+            function startChangeColors() {
+                changeColors();
+                colorInterval = setInterval(changeColors, 1500); // Изменяем цвет каждые 1.5 секунды
+                document.getElementById('start-btn').disabled = true;
+                document.getElementById('stop-btn').disabled = false;
+            }
+
+            function stopChangeColors() {
+                clearInterval(colorInterval);
+                document.getElementById('start-btn').disabled = false;
+                document.getElementById('stop-btn').disabled = true;
+            }
+            
+            function startTimeUpdate() {
+                showDate();
+                timeUpdateInterval = setInterval(showDate, 2000); // Обновляем время каждые 2 секунды
+                document.getElementById('update-time-btn').disabled = true;
+                document.getElementById('stop-time-btn').disabled = false;
+            }
+            
+            function stopTimeUpdate() {
+                clearInterval(timeUpdateInterval);
+                document.getElementById('update-time-btn').disabled = false;
+                document.getElementById('stop-time-btn').disabled = true;
+            }
         </script>
     </head>
     <body onload="showDate()">
@@ -81,6 +148,12 @@
 
         <main>
             <div id="current-date" class="date-container"></div>
+            <div class="buttons-container">
+                <button onclick="startChangeColors()" id="start-btn">Старт (цвет)</button>
+                <button onclick="stopChangeColors()" disabled id="stop-btn">Стоп (цвет)</button>
+                <button onclick="startTimeUpdate()" id="update-time-btn">Обновлять время</button>
+                <button onclick="stopTimeUpdate()" disabled id="stop-time-btn">Остановить время</button>
+            </div>
         </main>
 
         <footer>
