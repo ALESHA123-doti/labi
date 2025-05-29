@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Алёшкина Варвара Максимовна. Лабораторная 7</title>
+        <link rel="stylesheet" href="..//main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon-32x32.png">
+        <link rel="icon" href="favicon-48x48.ico">
+        <style>
+            .exchange-box {
+                margin: 20px 0;
+                padding: 15px;
+                border: 1px solid #e0e0e0;
+                border-radius: 5px;
+                background: #f8f9fa;
+                max-width: 400px;
+            }
+            .exchange-title {
+                margin: 0 0 10px 0;
+                color: #2c3e50;
+                font-size: 1.2em;
+            }
+            .current-rate {
+                font-size: 1.5em;
+                font-weight: bold;
+                margin: 5px 0;
+            }
+            .rate-change {
+                display: inline-block;
+                padding: 3px 8px;
+                border-radius: 3px;
+                margin: 5px 0;
+            }
+            .up {
+                color: #27ae60;
+                background-color: #e8f5e9;
+            }
+            .down {
+                color: #e74c3c;
+                background-color: #ffebee;
+            }
+            .exchange-details {
+                margin-top: 10px;
+                font-size: 0.9em;
+                color: #555;
+            }
+            .exchange-footer {
+                margin-top: 15px;
+                font-size: 0.8em;
+                color: #7f8c8d;
+            }
+            .source-link {
+                color: #3498db;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+
+    <body>  
+        <header> 
+            НГТУ, ФБ, Лабораторная работа 7
+            <hr>
+        </header>
+
+        <main>
+            <button onclick="getEuroExchangeRate()">Получить курс евро</button>
+            <div id="exchange-result"></div>
+
+            <script>
+                function getEuroExchangeRate() {
+                    const url = 'https://www.cbr-xml-daily.ru/daily_json.js';
+                    const resultDiv = document.getElementById('exchange-result');
+                    
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            const euro = data.Valute.EUR;
+                            const change = euro.Value - euro.Previous;
+                            const changeClass = change >= 0 ? 'up' : 'down';
+                            const changeText = change >= 0 ? 
+                                `↑ +${change.toFixed(4)}` : 
+                                `↓ ${change.toFixed(4)}`;
+                            
+                            resultDiv.innerHTML = `
+                                <div class="exchange-box">
+                                    <div class="exchange-title">Курс евро ЦБ РФ</div>
+                                    <div class="current-rate">${euro.Value.toFixed(4)} ₽</div>
+                                    <div class="rate-change ${changeClass}">${changeText}</div>
+                                    <div class="exchange-details">
+                                        <div>Дата: ${new Date(data.Date).toLocaleDateString()}</div>
+                                        <div>Предыдущий курс: ${euro.Previous.toFixed(4)} ₽</div>
+                                    </div>
+                                    <div class="exchange-footer">
+                                        Источник: <a href="https://www.cbr-xml-daily.ru/" class="source-link" target="_blank">ЦБ РФ</a>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                }
+            </script>
+        </main>
+
+        <footer>
+            <hr>
+            &copy;Алёшкина Варя, ФБИ-34, 2 курс, 2025
+        </footer>
+    </body>
+</html>
