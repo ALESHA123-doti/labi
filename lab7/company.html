@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Алёшкина Варвара Максимовна. Лабораторная 7</title>
+        <link rel="stylesheet" href="..//main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon-32x32.png">
+        <link rel="icon" href="favicon-48x48.ico">
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 50%;
+                margin: 20px 0;
+            }
+            th, td {
+                border: 1px solid #1d0c8e;
+                padding: 8px;
+                text-align: center;
+            }
+            th {
+                background-color: #a8f4d1;
+            }
+            .positive {
+                color: green;
+            }
+            .negative {
+                color: red;
+            }
+            .stats {
+                margin-top: 15px;
+                font-weight: bold;
+            }
+            button {
+                padding: 10px 15px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header> 
+            НГТУ, ФБ, Лабораторная работа 7
+            <hr>
+        </header>
+
+        <main>
+            <button onclick="showStockData()">Курс акций компании Русгрейн</button>
+            <div id="stockTable"></div>
+
+            <script>
+                // Данные акций
+                const stockDates = [
+                    '19.09.2023', '18.09.2023', '17.09.2023', '16.09.2023', 
+                    '15.09.2023', '14.09.2023', '13.09.2023', '12.09.2023', 
+                    '11.09.2023', '10.09.2023'
+                ];
+                
+                const stockPrices = [
+                    15.3, 15.6, 15.6, 16.35, 
+                    16.52, 16.785, 17.1, 16.705, 
+                    16.9, 17.255
+                ];
+
+                function showStockData() {
+                    // Создаем таблицу
+                    let tableHTML = `
+                        <table border="1">
+                            <tr>
+                                <th>Дата</th>
+                                <th>Цена, руб</th>
+                                <th>Изменение</th>
+                            </tr>
+                    `;
+
+                    // Заполняем таблицу данными
+                    for (let i = 0; i < stockDates.length; i++) {
+                        let difference = '';
+                        let diffClass = '';
+                        
+                        if (i > 0) {
+                            const diff = stockPrices[i] - stockPrices[i-1];
+                            difference = diff.toFixed(3);
+                            
+                            if (diff > 0) {
+                                diffClass = 'positive';
+                                difference = '+' + difference;
+                            } else if (diff < 0) {
+                                diffClass = 'negative';
+                            } else {
+                                difference = '0';
+                            }
+                        } else {
+                            difference = '—';
+                        }
+
+                        tableHTML += `
+                            <tr>
+                                <td>${stockDates[i]}</td>
+                                <td>${stockPrices[i].toFixed(3)}</td>
+                                <td class="${diffClass}">${difference}</td>
+                            </tr>
+                        `;
+                    }
+
+                    tableHTML += `</table>`;
+
+                    // Вычисляем статистику
+                    const sum = stockPrices.reduce((a, b) => a + b, 0);
+                    const average = (sum / stockPrices.length).toFixed(3);
+                    const max = Math.max(...stockPrices).toFixed(3);
+                    const min = Math.min(...stockPrices).toFixed(3);
+
+                    const statsHTML = `
+                        <div class="stats">
+                            Среднее значение: ${average} руб<br>
+                            Минимальное значение: ${min} руб<br>
+                            Максимальное значение: ${max} руб
+                        </div>
+                    `;
+
+                    // Выводим все на страницу
+                    document.getElementById('stockTable').innerHTML = tableHTML + statsHTML;
+                    
+                    // Скрываем кнопку после нажатия
+                    document.querySelector('button').style.display = 'none';
+                }
+            </script>
+        </main>
+
+        <footer>
+            <hr>
+            &copy;Алёшкина Варя, ФБИ-34, 2 курс, 2025
+        </footer>
+    </body>
+</html>
