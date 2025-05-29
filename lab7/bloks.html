@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Алёшкина Варвара Максимовна. Лабораторная 7</title>
+        <link rel="stylesheet" href="..//main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon-32x32.png">
+        <link rel="icon" href="favicon-48x48.ico">
+        <script>
+            function addNewBlock() {
+                let newBlock = document.createElement('div');
+                newBlock.style.backgroundColor = 'lightgreen';
+                newBlock.style.height = '40px';
+                newBlock.style.width = '80%'; // Ширина блока
+                newBlock.style.margin = '10px auto'; // Внешние отступы 
+                newBlock.style.padding = '10px'; // Внутренние отступы
+                newBlock.style.border = '2px solid darkgreen'; // Рамка
+                newBlock.style.borderRadius = '5px'; // Закругленные углы
+
+                document.querySelector('main').appendChild(newBlock);
+                }
+        </script>
+    </head>
+
+
+    <body>
+        <header> 
+            НГТУ, ФБ, Лабораторная работа 7
+            <hr>
+        </header>
+
+        <main>
+            <button onclick="addNewBlock()">Добавить блок</button>
+        </main>
+
+        <footer>
+            <hr>
+            &copy;Алёшкина Варя, ФБИ-34, 2 курс, 2025
+        </footer>
+    </body>
+</html>
