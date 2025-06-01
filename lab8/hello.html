@@ -9,6 +9,7 @@
         <link rel="icon" href="favicon-48x48.ico">
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     </head>
+    
 
     <body>
         <header> 
@@ -19,6 +20,9 @@
         <main>
             <div id="app">
                 <h1 :title="messageRus">{{ message }}</h1>
+                <p>Счётчик: {{ counter }}</p>
+                <button @click="incCounter">++</button>
+                <button @click="decCounter">--</button>
             </div>
         </main>
 
@@ -32,8 +36,17 @@
                 data() {
                     return {
                         message: 'Hello!',
-                        messageRus: 'Привет!'
+                        messageRus: 'Привет!',
+                        counter: 1,
                    }
+                },
+                methods: {
+                    incCounter() {
+                        this.counter++;
+                    }, 
+                    decCounter() {
+                        this.counter--;
+                    }              
                 }
             })
             app.mount('#app')
