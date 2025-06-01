@@ -45,7 +45,7 @@
                 </div>
                 <hr>
 
-                <h2>Цветы</h2>
+             <h2>Цветы</h2>
                 <table class="table table-success">
                     <thead>
                         <tr>
@@ -53,12 +53,20 @@
                             <th>Редактировать</th>
                         </tr>
                     </thead>
-                    <tr v-for="(flower, id) in flowers">
-                        <td>{{ flower }}</td>
-                        <td>
-                            <button @click="edit(id, flower)" class="btn btn-primary"><i class="bi bi-pen"></i></button>
-                        </td>
-                    </tr>
+                    <tbody>
+                        <tr v-for="(flower, id) in flowers" :key="id">
+                            <td>
+                                <span v-if="flower === null">загружается...</span>
+                                <span v-else>{{ flower }}</span>
+                            </td>
+                            <td>
+                                <button @click="edit(id, flower)" class="btn btn-primary" v-if="flower !== null">
+                                    <i class="bi bi-pen"></i>
+                                </button>
+                                <div class="spinner-border text-primary" role="status" v-if="flower === null"></div>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
 
                 <h2>Калькулятор</h2>
@@ -113,7 +121,7 @@
                     },
                     edit(id,flower) {
                         let newName = prompt('Введите имя цветка:', flower);
-                        this.flowers[id] = 'сохранение...';
+                        this.flowers[id] = null;
                         setTimeout(() => {
                             this.flowers[id] = newName;
                         },3000);
